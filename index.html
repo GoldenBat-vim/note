@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ページタイトル</title>
     <!-- CSSの外部ファイルをリンク -->
-    <link rel="stylesheet" href="styles.css">
     <!-- ページの説明やキーワード -->
     <meta name="description" content="ページの説明文をここに記述">
     <meta name="keywords" content="キーワード1, キーワード2, キーワード3">
@@ -23,11 +22,10 @@
 <body>
    <main>
     <pre id="fileContent"></pre>
-
     <script>
         document.getElementById('loadButton').addEventListener('click', function() {
             // サーバー上のファイルパス
-            const filePath = './01.txt';
+            const filePath = 'https://goldenbat-vim.github.io/note/01.txt';
             // fetch APIを使ってファイルを読み込む
             fetch(filePath)
                 .then(response => {
@@ -48,8 +46,6 @@
     </script>
    </main>
 
-    <!-- JavaScriptの外部ファイルをリンク -->
-    <script src="script.js"></script>
 </body>
 </html>
 
