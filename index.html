@@ -20,33 +20,66 @@
     </style>
 </head>
 <body>
-   <main>
-    <p>dummy</p>
+    <label><input type="radio" name="mode" value="all" checked="true">all</label><br>
+    <label><input type="radio" name="mode" value="hide1">hide1</label><br>
+    <label><input type="radio" name="mode" value="hide2">hide2</label><br>
+    <button type="button" onclick="showResult()">表示</button><br>
     <pre id="fileContent"></pre>
     <script>
-        document.getElementById('loadButton').addEventListener('click', function() {
-            // サーバー上のファイルパス
-            const filePath = 'https://goldenbat-vim.github.io/note/01.txt';
-            // fetch APIを使ってファイルを読み込む
-            fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('ファイルが見つかりません');
-                    }
-                    return response.text();
-                })
-                .then(text => {
-                    // ファイルの内容を表示
-                    document.getElementById('fileContent').textContent = text;
-                })
-                .catch(error => {
-                    console.error('エラー:', error);
-                    document.getElementById('fileContent').textContent = 'ファイルを読み込めませんでした。';
-                });
-        });
-    </script>
 
-   </main>
+     function showResult(){
+        const filePath = '01.txt';
+
+        // fetch APIを使ってファイルを読み込む
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('ファイルが見つかりません');
+                }
+                return response.text();
+            })
+            .then(text => {
+
+                // ファイルの内容を表示
+                const lines = text.split('\n');
+                let str;
+                let result = "";
+                let selectValue = getSelectMode()
+                lines.forEach((line, index) =>{
+                  str = line.split(',');
+
+                  if(selectValue === 'all'){
+                    result = result + str[0] + ' : ' + str[1] + '\n'; 
+                  }else if(selectValue === 'hide1'){
+                    result = result + str[0] + '\n'; 
+                  }else{
+                    result = result + str[1] + '\n'; 
+                  }
+                });
+
+                document.getElementById('fileContent').textContent = result;
+                console.log("filePath -> " + filePath);
+            })
+            .catch(error => {
+                console.error('エラー:', error);
+                document.getElementById('fileContent').textContent = 'ファイルを読み込めませんでした。';
+            });
+      }
+      function getSelectMode(){
+
+        let checkValue = '';
+        let modeRadio = document.getElementsByName('mode');
+        let len = modeRadio.length;
+
+        for (let i = 0; i < len; i++){
+            if (modeRadio.item(i).checked){
+              checkValue = modeRadio.item(i).value;
+            }
+          }
+          return checkValue;
+      }
+ 
+    </script>
 
 </body>
 </html>
