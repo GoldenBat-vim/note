@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ページタイトル</title>
-    <!-- CSSの外部ファイルをリンク -->
-    <!-- ページの説明やキーワード -->
-    <meta name="description" content="ページの説明文をここに記述">
-    <meta name="keywords" content="キーワード1, キーワード2, キーワード3">
+    <title>note</title>
     <style>
         body{
           background-color: #CCD;
           font-family: 'arial','Hiragino Sans','meiryo',sans-serif;
+        }
+        main{
+          margin: 20px;
+        }
+        input{
+          margin-bottom: 10px;
         }
         pre{
           font-size: 20px;
@@ -20,12 +22,15 @@
     </style>
 </head>
 <body>
+    
+  <main>
     <label><input type="radio" name="mode" value="all" checked="true">all</label><br>
     <label><input type="radio" name="mode" value="hide1">hide1</label><br>
     <label><input type="radio" name="mode" value="hide2">hide2</label><br>
     <button type="button" onclick="showResult()">表示</button><br>
     <pre id="fileContent"></pre>
-    <script>
+  </main>
+  <script>
 
      function showResult(){
         const filePath = '01.txt';
